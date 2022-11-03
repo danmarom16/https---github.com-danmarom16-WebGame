@@ -1,0 +1,41 @@
+.sea{
+    position: absolute;
+}
+
+.island_one{
+    position: absolute;
+    left: 10%;
+    top: 20%;
+
+}
+
+.island_two{
+    position: absolute;
+    left: 40%;
+    top: 15%;
+}
+
+.island_three{
+    position: absolute;
+    right: 5%;
+    top: 15%;
+}
+
+.island_four{
+    position: absolute;
+    right: 45%;
+    top: 40%; 
+}
+
+
+.island_five{
+    position: absolute;
+    left:10%;
+    top: 90%; 
+}
+
+.island_six{
+    position: absolute;
+    right: 5%;
+    top: 50%;
+}
