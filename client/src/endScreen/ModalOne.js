@@ -9,7 +9,7 @@ function ModalOne({ handleClose, show }) {
         show={show}
         backdrop="static"
         keyboard={false}
-        ohHide={handleClose}
+
       >
         <Modal.Header closeButton>
           <Modal.Title>Game Over</Modal.Title>

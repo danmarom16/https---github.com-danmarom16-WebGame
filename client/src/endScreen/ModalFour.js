@@ -9,7 +9,7 @@ function ModalFour({ handleClose, show }) {
         show={show}
         backdrop="static"
         keyboard={false}
-        ohHide={handleClose}
+
       >
         <Modal.Header closeButton>
           <Modal.Title>You Win!</Modal.Title>

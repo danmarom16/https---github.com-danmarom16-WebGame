@@ -32,7 +32,7 @@ function App() {
   const rollDice = () => {
     const x = Math.floor(Math.random() * 6) + 1;
     setDiceNum(String(x));
-    console.log(`value of cube in App ${diceNum}`);
+    setDiceNum(x)
     let src = `./cubes/cube${x}.jpg`;
     setImgSrc(src);
   };
