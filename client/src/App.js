@@ -3,7 +3,7 @@ import "./background/Background.css";
 import Pirate from "./Pirate.js";
 import "./Pirate.css";
 import "./App.css";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import OpenedSidebar from "./sidebar/OpenedSidebar.js";
 import ClosedSidebar from "./sidebar/ClosedSidebar.js";
 import seaImg from "./assets/sea.png";
@@ -16,8 +16,11 @@ import islandSixImg from "./assets/island6.png";
 import pirateImage from "./assets/pirate.png";
 import ScrollContainer from "react-indiana-drag-scroll";
 import EndScreen from "./endScreen/EndScreen.js";
+import axios from "./Axios";
+
 
 function App() {
+
   const ref = useRef(null);
   const [open, setOpen] = useState(true);
   const [diceNum, setDiceNum] = useState('1');
@@ -25,9 +28,67 @@ function App() {
   const [imgSrc, setImgSrc] = useState("./cubes/cube1.jpg");
   const [isBrowsing, setIsBrowsing] = useState(false);
   const [show, setShow] = useState(false)
-  const [numPlayedGames, setNumPlayedGames] = useState(0);
+  const [playedGamesCount, setPlayedGamesCount] = useState(0);
+  const [userIP, setUserIP] = useState(null);
 
-  const increseNumOfPlayedGames = () => setNumPlayedGames(numPlayedGames => numPlayedGames + 1);
+  const increasePlayedGamesCounter = () => {
+    setPlayedGamesCount(playedGamesCount => playedGamesCount + 1);
+  }
+
+
+  const determineAction = (x) => {
+
+    switch (x){
+      case 1:
+        return "Player rolled 1";
+      case 2:
+        return "Player rolled 2";
+      case 3:
+        return "Player rolled 3";
+      case 4:
+        return "Player rolled 4";
+      case 5:
+        return "Player rolled 5";
+      case 6:
+        return "Player rolled 6";
+        default:
+          return "error";           
+    }
+
+  }
+
+  const logAction = (x) => {
+
+    const date = Date.now()
+    const act = determineAction(x)
+    const id = playedGamesCount;
+    increasePlayedGamesCounter();
+    
+    const request = JSON.stringify({
+      id: id,
+      ip: userIP,
+      action: act,  //generateAction 
+      timestamp: date
+    });
+
+    axios
+    .post(`/`, request)
+    .then((res) => {
+        console.log("POST succesfully");
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
+  const getIP = async () => {
+    const res = await axios.get('https://geolocation-db.com/json/');
+    setUserIP(res.data.IPv4);
+  }
+
+  useEffect(()=>{
+    getIP();
+  },[])
 
   const rollDice = () => {
     const x = Math.floor(Math.random() * 6) + 1;
@@ -35,13 +96,13 @@ function App() {
     setDiceNum(x)
     let src = `./cubes/cube${x}.jpg`;
     setImgSrc(src);
+    logAction(x);
   };
 
   return (
     <div className="app">
       <EndScreen
         setImgSrc={setImgSrc}
-        numPlayedGames={numPlayedGames}
         setIsPlayed={setIsPlayed}
         setDiceNum={setDiceNum}
         diceNum={diceNum}
