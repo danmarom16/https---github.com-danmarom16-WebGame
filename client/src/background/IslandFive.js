@@ -1,13 +1,10 @@
-
-
-function IslandFive({image}) {
-
+function IslandFive({ image }) {
   return (
     <div className="island_five">
-    <img src={image}/>
-    <div className="island_num">5</div>
+      <img src={image} className="img" />
+      <div className="island_num">5</div>
     </div>
-  ); 
+  );
 }
 
 export default IslandFive;

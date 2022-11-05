@@ -54,3 +54,8 @@
     font-size: x-large;
     font-weight: bold;
 }
+
+.img{
+    max-width: 100%;
+    max-height: auto;
+}
