@@ -23,9 +23,9 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  const sqlQuery = `INSERT INTO game_log (id, user_ip, action, timestamp) VALUES (?, ?, ?, ?)`;
+  const sqlQuery = `INSERT INTO game_log (user_ip, action, timestamp) VALUES (?, ?, ?)`;
 
-  db.query(sqlQuery, [req.body.id, req.body.ip, req.body.action, req.body.timestamp], (error, result) => {
+  db.query(sqlQuery, [req.body.ip, req.body.action, req.body.timestamp], (error, result) => {
     if(error){
         console.log(error)
     }

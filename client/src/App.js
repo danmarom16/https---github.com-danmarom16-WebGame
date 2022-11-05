@@ -61,11 +61,8 @@ function App() {
 
     const date = Date.now()
     const act = determineAction(x)
-    const id = playedGamesCount;
-    increasePlayedGamesCounter();
     
     const request = JSON.stringify({
-      id: id,
       ip: userIP,
       action: act,  //generateAction 
       timestamp: date
