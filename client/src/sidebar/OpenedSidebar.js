@@ -27,7 +27,7 @@ function OpenedSidebar({
 
   return (
     <div className="opened_sidebar">
-      <div className="col">
+      <div className="col" style={{textAlign: "center"}} >
         <div className="row">
           <button className="btn mb-5">
             <i className="fa-solid fa-2x fa-close" onClick={closeSidebar}></i>
@@ -60,7 +60,7 @@ function OpenedSidebar({
           )}
         </div>
         <div className="row roll_dice">
-          <button className="btn border-4 border-dark" onClick={handleRollDice}>
+          <button className="btn border-4 border-dark" style={{fontSize:"x-large", fontWeight:"bold", color:"white"}} onClick={handleRollDice}>
             Roll Dice
           </button>
         </div>

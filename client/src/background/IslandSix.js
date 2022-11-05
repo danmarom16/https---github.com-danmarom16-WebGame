@@ -5,6 +5,7 @@ function IslandSix({image}) {
   return (
     <div className="island_six">
     <img src={image}/>
+    <div className="island_num">6</div>
     </div>
   ); 
 }

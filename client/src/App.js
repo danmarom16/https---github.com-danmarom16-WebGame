@@ -46,24 +46,24 @@ function App() {
         setYMovement(0)
         break;
       case 2:
-        setXMovement(850)
-        setYMovement(70)
+        setXMovement('34vw')
+        setYMovement('2vh')
         break;
       case 3:
-        setXMovement(1750)
-        setYMovement(70)
+        setXMovement('75vw')
+        setYMovement('5vh')
         break;
       case 4:
-        setXMovement(650)
-        setYMovement(670)
+        setXMovement('34vw')
+        setYMovement('45vh')
         break;
       case 5:
-        setXMovement(0)
-        setYMovement(900)
+        setXMovement('0vw')
+        setYMovement('72vh')
       break;
       case 6:
-        setXMovement(1700)
-        setYMovement(800)
+        setXMovement('70vw')
+        setYMovement('52vh')
         break;
       default:
     }
