@@ -6,13 +6,14 @@ import ModalFour from "./ModalFour";
 import ModalSix from "./ModalSix"
 import ModalFive from "./ModalFive"
 
-function EndScreen({show , setShow ,setIsPlayed, setDiceNum, diceNum, setImgSrc }) {
+function EndScreen({show , setShow ,setIsPlayed, setDiceNum, diceNum, setImgSrc, resPirateLocation }) {
 
   const handleClose = () => {
     setShow(false);
     setDiceNum('1');
     setIsPlayed(false);
     setImgSrc("./cubes/cube1.jpg")
+    resPirateLocation();
   };
 
   const handleShow = () => setShow(true);

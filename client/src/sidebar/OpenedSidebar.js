@@ -1,4 +1,6 @@
 import "./Sidebar.css";
+import {motion} from 'framer-motion'
+import {useEffect, useState} from 'react'
 
 function OpenedSidebar({
   setOpen,
@@ -8,12 +10,16 @@ function OpenedSidebar({
   isBrowsing,
   setIsPlayed,
 }) {
+
+  const [rotate, setRotate] = useState(false)
+
   const closeSidebar = () => {
     setOpen(false);
   };
 
   const handleRollDice = () => {
     rollDice();
+    setRotate(!rotate);
     setTimeout(() => {
       setIsPlayed(true);
     }, 1000);
@@ -59,7 +65,7 @@ function OpenedSidebar({
           </button>
         </div>
         <div className="row">
-          <img className="dice_img" src={imgSrc}></img>
+          <motion.img animate={{rotate: rotate ? 360 : 0}} className="dice_img" src={imgSrc}></motion.img>
         </div>
       </div>
     </div>

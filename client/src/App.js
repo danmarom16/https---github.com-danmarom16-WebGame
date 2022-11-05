@@ -19,6 +19,7 @@ import EndScreen from "./endScreen/EndScreen.js";
 import axios from "./Axios";
 
 
+
 function App() {
 
   const ref = useRef(null);
@@ -30,6 +31,43 @@ function App() {
   const [show, setShow] = useState(false)
   const [playedGamesCount, setPlayedGamesCount] = useState(0);
   const [userIP, setUserIP] = useState(null);
+  const [xMovement, setXMovement] = useState(0);
+  const [yMovement, setYMovement] = useState(0);
+
+  const resPirateLocation = () => {
+    setXMovement(0);
+    setYMovement(0);
+  }
+
+  const calPirateLocation = () => {
+    switch(diceNum){
+      case 1:
+        setXMovement(0)
+        setYMovement(0)
+        break;
+      case 2:
+        setXMovement(850)
+        setYMovement(70)
+        break;
+      case 3:
+        setXMovement(1750)
+        setYMovement(70)
+        break;
+      case 4:
+        setXMovement(650)
+        setYMovement(670)
+        break;
+      case 5:
+        setXMovement(0)
+        setYMovement(900)
+      break;
+      case 6:
+        setXMovement(1700)
+        setYMovement(800)
+        break;
+      default:
+    }
+  }
 
   const increasePlayedGamesCounter = () => {
     setPlayedGamesCount(playedGamesCount => playedGamesCount + 1);
@@ -37,7 +75,6 @@ function App() {
 
 
   const determineAction = (x) => {
-
     switch (x){
       case 1:
         return "Player rolled 1";
@@ -87,6 +124,12 @@ function App() {
     getIP();
   },[])
 
+
+  useEffect(()=>{
+    calPirateLocation();
+  },[diceNum])
+
+
   const rollDice = () => {
     const x = Math.floor(Math.random() * 6) + 1;
     setDiceNum(String(x));
@@ -105,6 +148,7 @@ function App() {
         diceNum={diceNum}
         setShow={setShow}
         show={isPlayed}
+        resPirateLocation={resPirateLocation}
       ></EndScreen>
       <ScrollContainer className="scroll-container" id="app">
         <Background
@@ -116,7 +160,7 @@ function App() {
           islandFiveImg={islandFiveImg}
           islandSixImg={islandSixImg}
         />
-        <Pirate pirateLocation={diceNum} image={pirateImage} />
+        <Pirate xMovement={xMovement} yMovement={yMovement} image={pirateImage} calPirateLocation={calPirateLocation} />
         {open === true ? (
           <OpenedSidebar
             setOpen={setOpen}

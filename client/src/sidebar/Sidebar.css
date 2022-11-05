@@ -5,6 +5,7 @@
     position: absolute;
     height: 100vw;
     right: 0%;
+    opacity: 0.3;
 }
 
 .browse_map{
